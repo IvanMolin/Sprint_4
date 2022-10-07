@@ -1,4 +1,4 @@
-package ru.yandex.PageObject;
+package ru.yandex.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
@@ -10,9 +10,6 @@ public class ScooterOrderPage {
     private WebDriver driver;
 
 // первая форма для заказа самоката
-
-    // заголовок формы "Для кого самокат"
-    private By headerOrderScooterOne = By.className("Order_Header__BZXOb");
 
     // поле для ввода имени
     private By fieldName = By.xpath(".//*[@placeholder='* Имя']");
@@ -37,11 +34,6 @@ public class ScooterOrderPage {
         this.driver = driver;
     }
 
-    // метод для ожидания загрузки формы
-    public void waitingHeaderOrder(){
-        new WebDriverWait(driver, 15)
-                .until(ExpectedConditions.visibilityOfElementLocated(headerOrderScooterOne));
-    }
 
     // метод клика на поле
     public void clickFieldName(){

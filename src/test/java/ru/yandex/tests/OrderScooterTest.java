@@ -1,24 +1,14 @@
-package ru.yandex.PageObject;
+package ru.yandex.tests;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
 import org.hamcrest.MatcherAssert;
 import static org.hamcrest.CoreMatchers.containsString;
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
+import ru.yandex.pages.MainPage;
+import ru.yandex.pages.ScooterOrderPage;
+import ru.yandex.pages.ScooterRentalPage;
 
-public class OrderScooterTest {
-    private WebDriver driver;
+public class OrderScooterTest extends BaseTest {
 
-    @Before
-    public void startUp(){
-        WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
-        driver.get("https://qa-scooter.praktikum-services.ru");
-    }
 
     // тест заказ самоката с помощью верхней кнопки "Заказать"
     @Test
@@ -27,7 +17,6 @@ public class OrderScooterTest {
         objMainPage.clickButtonCooke();
         objMainPage.clickButtonOrderTop();
         ScooterOrderPage objScooterOrderPage = new ScooterOrderPage(driver);
-        objScooterOrderPage.waitingHeaderOrder();
         objScooterOrderPage.enterOrderForm(
                 "Иван",
                 "Молин",
@@ -35,7 +24,6 @@ public class OrderScooterTest {
                 "Октябрьская",
                 "89994592222");
         ScooterRentalPage objScooterRentalPage = new ScooterRentalPage(driver);
-        objScooterRentalPage.waitingHeaderRental();
         objScooterRentalPage.enterRentalDetails( "10.10.2022","Домофон не работает. Позвоните");
         objScooterRentalPage.clickButtonConfirm();
         String expected = "Заказ оформлен";
@@ -51,7 +39,6 @@ public class OrderScooterTest {
         objMainPage.clickButtonCooke();
         objMainPage.clickButtonOrderBottom();
         ScooterOrderPage objScooterOrderPage = new ScooterOrderPage(driver);
-        objScooterOrderPage.waitingHeaderOrder();
         objScooterOrderPage.enterOrderForm(
                 "Александр",
                 "Петровский",
@@ -59,7 +46,6 @@ public class OrderScooterTest {
                 "Смоленская",
                 "+79994592223");
         ScooterRentalPage objScooterRentalPage = new ScooterRentalPage(driver);
-        objScooterRentalPage.waitingHeaderRental();
         objScooterRentalPage.enterRentalDetails( "12.10.2022","I am waiting");
         objScooterRentalPage.clickButtonConfirm();
         String expected = "Заказ оформлен";
@@ -70,8 +56,5 @@ public class OrderScooterTest {
 
 
 
-    @After
-    public void cleanUp(){
-        driver.quit();
-    }
+
 }

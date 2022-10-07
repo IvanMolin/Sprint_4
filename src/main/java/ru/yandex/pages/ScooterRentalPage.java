@@ -1,4 +1,4 @@
-package ru.yandex.PageObject;
+package ru.yandex.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
@@ -10,8 +10,6 @@ public class ScooterRentalPage {
     private WebDriver driver;
 
     // вторая форма заказа "Про аренду"
-    // заголовок формы "Про аренду"
-    private By headerOrderScooterTwo = By.className("Order_Header__BZXOb");
 
     //поле для выбора даты доставки самоката
     private  By fieldDateDelivery = By.xpath(".//input[@placeholder='* Когда привезти самокат']");
@@ -44,12 +42,6 @@ public class ScooterRentalPage {
 
     public ScooterRentalPage(WebDriver driver){
         this.driver = driver;
-    }
-
-    // метод для ожидания загрузки формы "Про аренду"
-    public void waitingHeaderRental(){
-        new WebDriverWait(driver, 5)
-                .until(ExpectedConditions.visibilityOfElementLocated(headerOrderScooterTwo));
     }
 
 
